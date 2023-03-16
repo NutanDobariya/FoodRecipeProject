@@ -1,14 +1,14 @@
-import { USERDATA,MUTE} from "./action-types";
-export function userData(payload: any) {
+import { USERDATA,CATEGORY} from "./action-types";
+export function userData(payload) {
   return {
     type: USERDATA,
     payload,
   };
 }
 
-export function mute(payload: any) {
+export function category(payload) {
   return {
-    type: MUTE,
+    type: CATEGORY,
     payload,
   };
 }

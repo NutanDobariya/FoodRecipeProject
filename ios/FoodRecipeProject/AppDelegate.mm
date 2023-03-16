@@ -14,7 +14,7 @@
   self.initialProps = @{};
   
   
-  [RNSplashScreen show];  // here
+  //[RNSplashScreen show];  // here
   // or
   //[RNSplashScreen showSplash:@"LaunchScreen" inRootView:rootView];
 

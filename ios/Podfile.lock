@@ -426,6 +426,10 @@ PODS:
   - RNScreens (3.20.0):
     - React-Core
     - React-RCTImage
+  - RNSVG (13.8.0):
+    - React-Core
+  - RNVectorIcons (9.2.0):
+    - React-Core
   - SocketRocket (0.6.0)
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
@@ -494,6 +498,8 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNScreens (from `../node_modules/react-native-screens`)
+  - RNSVG (from `../node_modules/react-native-svg`)
+  - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -589,6 +595,10 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-gesture-handler"
   RNScreens:
     :path: "../node_modules/react-native-screens"
+  RNSVG:
+    :path: "../node_modules/react-native-svg"
+  RNVectorIcons:
+    :path: "../node_modules/react-native-vector-icons"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -626,7 +636,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: d6b7fa9260aa3cb40afee0507e3bc1d17ecaa6f2
   React-jsinspector: 1f51e775819199d3fe9410e69ee8d4c4161c7b06
   React-logger: 0d58569ec51d30d1792c5e86a8e3b78d24b582c6
-  react-native-safe-area-context: 366f55da044348b534b54cedbfa8df2e79394131
+  react-native-safe-area-context: 39c2d8be3328df5d437ac1700f4f3a4f75716acc
   react-native-splash-screen: 4312f786b13a81b5169ef346d76d33bc0c6dc457
   React-perflogger: 0bb0522a12e058f6eb69d888bc16f40c16c4b907
   React-RCTActionSheet: bfd675a10f06a18728ea15d82082d48f228a213a
@@ -643,10 +653,12 @@ SPEC CHECKSUMS:
   ReactCommon: b49a4b00ca6d181ff74b17c12b2d59ac4add0bde
   RNGestureHandler: 071d7a9ad81e8b83fe7663b303d132406a7d8f39
   RNScreens: 218801c16a2782546d30bd2026bb625c0302d70f
+  RNSVG: c1e76b81c76cdcd34b4e1188852892dc280eb902
+  RNVectorIcons: fcc2f6cb32f5735b586e66d14103a74ce6ad61f8
   SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
   Yoga: 79dd7410de6f8ad73a77c868d3d368843f0c93e0
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: eeef37e0fcfea519b6096b8d3cb13af8fbbd221e
+PODFILE CHECKSUM: 86623d0e7d6e6a1bb55a5e5e0d7d52612ff7f716
 
 COCOAPODS: 1.11.3

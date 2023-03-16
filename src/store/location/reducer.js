@@ -1,14 +1,14 @@
-import { USERDATA,MUTE} from "./action-types";
+import { USERDATA,CATEGORY} from "./action-types";
 
 const initialState = {
   userData: [],
-  mute:false,
+  category:'',
 };
 
 const location = (
   state = initialState,
-  { type, payload = null }: any
-): any => {
+  { type, payload = null }
+) => {
 
   switch (type) {
     case USERDATA:
@@ -16,10 +16,10 @@ const location = (
         ...state,
         userData: payload,
       };
-      case MUTE:
+      case CATEGORY:
         return {
           ...state,
-          mute: payload,
+          category: payload,
         };
     default:
       return state;

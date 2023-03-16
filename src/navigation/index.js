@@ -1,288 +1,230 @@
-// import { NavigationContainer } from '@react-navigation/native';
-// import { createNativeStackNavigator } from '@react-navigation/native-stack';
-// import React, { useEffect, useState } from 'react';
-// import { Text } from 'react-native';
-// import { Colors } from '../theme/Colors';
-// import HomeScreen from '../screens/home';
-
-import React, { useEffect } from "react";
-
+import React, {useEffect,useState} from 'react';
+import Colors from '../theme/Colors';
+import {dimens} from '../constants/dimens';
 import HomeScreen from '../screens/HomeScreen';
-// import NotificationScreen from './src/screens/NotificationScreen';
-// import SettingsScreen from './src/screens/SettingsScreen';
-// import SearchScreen from './src/screens/SearchScreen';
-// import AddPostScreen from './src/screens/AddPostScreen';
-import NotificationScreen from '../screens/HomeScreen';
-import SettingsScreen from '../screens/HomeScreen';
-import SearchScreen from '../screens/HomeScreen';
-import AddPostScreen from '../screens/HomeScreen';
-import Home from '../screens/Home';
-
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-  Image,
-  TouchableOpacity,
-  Platform
-} from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
-import { Colors } from '../theme/Colors';
-import { dimens } from '../constants/dimens';
-import SplashScreen from 'react-native-splash-screen'
-
-// import strings from './src/constants/strings';
-// import AntDesign from 'react-native-vector-icons/AntDesign';
-// import { getFontSize } from './/src/utility/Responsive';
-//import { createDrawerNavigator } from '@react-navigation/drawer';
-
-
-// Text.defaultProps = Text.defaultProps || {};
-// Text.defaultProps.allowFontScaling = false;
-
+import StartScreen from '../screens/StartScreen';
+import BookmarkScreen from '../screens/BookmarkScreen';
+import SettingsScreen from '../screens/SettingsScreen';
+import {View, Platform, StatusBar, StyleSheet,Text} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import SplashScreen from 'react-native-splash-screen';
+import Feather from 'react-native-vector-icons/Feather';
+import NetInfo from '@react-native-community/netinfo';
+import { getFontSize } from '../theme/Responsive';
 
 export default function App() {
+  const [isOffline, setOfflineStatus] = useState(false);
 
-  useEffect(()=>{
+  useEffect(() => {
     SplashScreen.hide();
-  },[])
+    StatusBar.setHidden(true, 'none');
 
-    const AppStack = createStackNavigator();
-    
-    function AppContainerStack() {
-      return (
-        <AppStack.Navigator
-          Screen="MainTabScreen"
-          initialRouteName="MainTabScreen"
-          screenOptions={{ headerShown: false }}
-        >
-          <AppStack.Screen name="HomeScreen" component={HomeScreen} />
-          {/* <AppStack.Screen name="SettingsScreen" component={SettingsScreen} />
-          <AppStack.Screen name="AddPostScreen" component={AddPostScreen} />
-          <AppStack.Screen name="Home" component={Home} />
-          <AppStack.Screen name="SearchScreen" component={SearchScreen} />
-          <AppStack.Screen name="NotificationScreen" component={NotificationScreen} />
-          <AppStack.Screen name="MainTabScreen" component={MainTabScreen} /> */}
-  
-        </AppStack.Navigator>
-      );
-    }
-  
-    const HomeStack = createStackNavigator();
-    function HomeStackScreen() {
-      return (
-        <HomeStack.Navigator screenOptions={{ headerShown: false }}>
-          <HomeStack.Screen name="HomeScreen" component={HomeScreen} />
-        </HomeStack.Navigator>
-      );
-    }
-  
-    const SearchStack = createStackNavigator();
-    function SearchStackScreen() {
-      return (
-        <SearchStack.Navigator screenOptions={{ headerShown: false }}>
-          <SearchStack.Screen name="SearchScreen" component={SearchScreen} />
-        </SearchStack.Navigator>
-      );
-    }
-  
-  
-    const AddStack = createStackNavigator();
-    function AddStackScreen() {
-      return (
-        <AddStack.Navigator screenOptions={{ headerShown: false }}>
-          <AddStack.Screen name="Home" component={Home} />
-        </AddStack.Navigator>
-      );
-    }
-  
-  
-  
-    const NotificationStack = createStackNavigator();
-    function NotificationStackScreen() {
-      return (
-        <NotificationStack.Navigator screenOptions={{ headerShown: false }}>
-          <NotificationStack.Screen name="NotificationScreen" component={NotificationScreen} />
-        </NotificationStack.Navigator>
-      );
-    }
-  
-    const SettingsStack = createStackNavigator();
-    function SettingsStackScreen() {
-      return (
-        <SettingsStack.Navigator screenOptions={{ headerShown: false }}>
-          <SettingsStack.Screen name="SettingsScreen" component={SettingsScreen} />
-        </SettingsStack.Navigator>
-      );
-    }
-  
- 
-    const MainTab = createBottomTabNavigator();
-    function MainTabScreen() {
-      return (
-  
-        <MainTab.Navigator initialRouteName="Home"
-        //swipeEnabled="true"
-          screenOptions={{
-            tabBarStyle: {
-              backgroundColor: Colors.green,
-              paddingTop: 0,
-              paddingBottom: 0,
-            },
-          }}
-        >
-          <MainTab.Screen
-            name={'Home'}
-            component={HomeStackScreen}
-            options={{
-              headerShown: false,
-              tabBarStyle: { height: Platform.OS === "ios" ? dimens.h10 : dimens.h8 },   //to set height of bottom tab-bar         
-              tabBarLabel:
-                ({ focused, color, position }) => (
-                  <View />
-                ),
-              tabBarIcon: ({ focused, color, size }) => (
-  
-                <View
-                  style={{
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                  }}>
-  
-  
-                  {/* <AntDesign name="home" color={focused ? appColors.red : appColors.black} size={dimens.h3} /> */}
-  
-                </View>
-  
-              ),
-            }}
-          />
-  
-          <MainTab.Screen
-            name={'Search'}
-            component={SearchStackScreen}
-            options={{
-              headerShown: false,
-              tabBarStyle: { height: Platform.OS === "ios" ? dimens.h10 : dimens.h8 },   //to set height of bottom tab-bar         
-              tabBarLabel:
-                ({ focused, color, position }) => (
-                  <View />
-                ),
-              tabBarIcon: ({ focused, color, size }) => (
-  
-                <View
-                  style={{
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                  }}>
-  
-  
-                  {/* <AntDesign name="search1" color={focused ? appColors.red : appColors.black} size={dimens.h3} /> */}
-  
-                </View>
-  
-              ),
-            }}
-          />
-  
-          <MainTab.Screen
-            name={'Add'}
-            component={AddStackScreen}
-            options={{
-              headerShown: false,
-              tabBarStyle: { height: Platform.OS === "ios" ? dimens.h10 : dimens.h8 },   //to set height of bottom tab-bar         
-              tabBarLabel:
-                ({ focused, color, position }) => (
-                  <View />
-                ),
-              tabBarIcon: ({ focused, color, size }) => (
-  
-                <View
-                  style={{
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                  }}>
-  
-  
-                  {/* <AntDesign name="pluscircleo" color={focused ? appColors.red : appColors.black} size={dimens.h3} /> */}
-  
-                </View>
-  
-              ),
-            }}
-          />
-  
-          <MainTab.Screen
-            name={'Notification'}
-            component={NotificationStackScreen}
-            options={{
-              headerShown: false,
-              tabBarStyle: { height: Platform.OS === "ios" ? dimens.h10 : dimens.h8 },   //to set height of bottom tab-bar         
-              tabBarLabel:
-                ({ focused, color, position }) => (
-                  <View />
-                ),
-              tabBarIcon: ({ focused, color, size }) => (
-  
-                <View
-                  style={{
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                  }}>
-  
-                  {/* <AntDesign name="hearto" color={focused ? appColors.red : appColors.black} size={dimens.h3} /> */}
-  
-                </View>
-  
-              ),
-            }}
-          />
-  
-          <MainTab.Screen
-            name={'Settings'}
-            component={SettingsStackScreen}
-            options={{
-              headerShown: false,
-              tabBarStyle: { height: Platform.OS === "ios" ? dimens.h10 : dimens.h8 },   //to set height of bottom tab-bar         
-              tabBarLabel:
-                ({ focused, color, position }) => (
-                  <View />
-                ),
-              tabBarIcon: ({ focused, color, size }) => (
-  
-                <View
-                  style={{
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                  }}>
-  
-                  {/* <AntDesign name="user" color={focused ? appColors.red : appColors.black} size={dimens.h3} /> */}
-  
-                </View>
-  
-              ),
-            }}
-          />
-  
-        </MainTab.Navigator>
-  
-      );
-  
-    }
-  
-  
+    const removeNetInfoSubscription = NetInfo.addEventListener(state => {
+      const offline = !(state.isConnected && state.isInternetReachable);
+      setOfflineStatus(offline);
+    });
+
+    return () => {
+      removeNetInfoSubscription();
+    };
+  }, []);
+
+  const AppStack = createStackNavigator();
+
+  function AppContainerStack() {
     return (
-      <View style={{ flex: 1 }}>
+      <AppStack.Navigator
+        Screen="StartScreen"
+        initialRouteName="StartScreen"
+        screenOptions={{headerShown: false, tabBarHideOnKeyboard: true}}>
+        <AppStack.Screen name="StartScreen" component={StartScreen} />
+        <AppStack.Screen name="HomeScreen" component={HomeScreen} />
+        <AppStack.Screen name="BookmarkScreen" component={BookmarkScreen} />
+        <AppStack.Screen name="SettingsScreen" component={SettingsScreen} />
+        <AppStack.Screen name="MainTabScreen" component={MainTabScreen} />
+      </AppStack.Navigator>
+    );
+  }
+
+  const HomeStack = createStackNavigator();
+  function HomeStackScreen() {
+    return (
+      <HomeStack.Navigator screenOptions={{headerShown: false}}>
+        <HomeStack.Screen name="HomeScreen" component={HomeScreen} />
+      </HomeStack.Navigator>
+    );
+  }
+
+  const BookmarkStack = createStackNavigator();
+  function BookmarkStackScreen() {
+    return (
+      <BookmarkStack.Navigator screenOptions={{headerShown: false}}>
+        <BookmarkStack.Screen
+          name="BookmarkScreen"
+          component={BookmarkScreen}
+        />
+      </BookmarkStack.Navigator>
+    );
+  }
+
+  const SettingsStack = createStackNavigator();
+  function SettingsStackScreen() {
+    return (
+      <SettingsStack.Navigator screenOptions={{headerShown: false}}>
+        <SettingsStack.Screen
+          name="SettingsScreen"
+          component={SettingsScreen}
+        />
+      </SettingsStack.Navigator>
+    );
+  }
+
+  const MainTab = createBottomTabNavigator();
+  function MainTabScreen() {
+    return (
+      <MainTab.Navigator
+        initialRouteName="Home"
+        //swipeEnabled="true"
+        screenOptions={{
+          tabBarHideOnKeyboard: true,
+          tabBarStyle: {
+            shadowOffset: {
+              width: 0,
+              height: 12,
+            },
+            shadowOpacity: 0.58,
+            shadowRadius: 16.0,
+            elevation: 24,
+            borderTopLeftRadius: dimens.w5,
+            borderTopRightRadius: dimens.w5,
+            backgroundColor: Colors.white,
+            paddingTop: 0,
+            paddingBottom: Platform.OS === 'ios' ? dimens.h2 : 0,
+            height: Platform.OS === 'ios' ? dimens.h8 : dimens.h8,
+          },
+        }}>
+        <MainTab.Screen
+          name={'Home'}
+          component={HomeStackScreen}
+          options={{
+            headerShown: false,
+            tabBarLabel: ({focused, color, position}) => <View />,
+            tabBarIcon: ({focused, color, size}) => (
+              <View
+                style={{
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                }}>
+                <Feather
+                  name="home"
+                  color={focused ? Colors.mainTheme : Colors.grey}
+                  size={dimens.h4}
+                />
+              </View>
+            ),
+          }}
+        />
+
+        <MainTab.Screen
+          name={'Bookmark'}
+          component={BookmarkStackScreen}
+          options={{
+            headerShown: false,
+            tabBarLabel: ({focused, color, position}) => <View />,
+            tabBarIcon: ({focused, color, size}) => (
+              <View
+                style={{
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                }}>
+                <Feather
+                  name="bookmark"
+                  color={focused ? Colors.mainTheme : Colors.grey}
+                  size={dimens.h4}
+                />
+              </View>
+            ),
+          }}
+        />
+
+        <MainTab.Screen
+          name={'Settings'}
+          component={SettingsStackScreen}
+          options={{
+            headerShown: false,
+            tabBarLabel: ({focused, color, position}) => <View />,
+            tabBarIcon: ({focused, color, size}) => (
+              <View
+                style={{
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                }}>
+                <Feather
+                  name="user"
+                  color={focused ? Colors.mainTheme : Colors.grey}
+                  size={dimens.h4}
+                />
+              </View>
+            ),
+          }}
+        />
+      </MainTab.Navigator>
+    );
+  }
+
+  return (
+    <View style={{flex: 1}}>
+      <StatusBar
+        backgroundColor="#D99651"
+        barStyle="dark-content"
+        hidden={false}
+        translucent={true}
+      />
+
+      {isOffline === true ? (
+        <View style={styles.offlineContainer}>
+          <Text style={[styles.offlineText]} allowFontScaling={false}>
+            {'oops... It seems that you have no internet connection.'}
+          </Text>
+          <Text style={{fontSize: 50, textAlign: 'center'}}>🚣‍</Text>
+          <Text
+            style={[styles.offlineHint, {paddingTop: 20, textAlign: 'center'}]}
+            allowFontScaling={false}>
+            {'The app will automatically reload when you are connected again.'}
+          </Text>
+        </View>
+      ) : (
         <NavigationContainer>
           <AppContainerStack></AppContainerStack>
         </NavigationContainer>
-      </View>
-    );
-  }
+      )}
+    </View>
+  );
+}
+const styles = StyleSheet.create({
+  offlineContainer: {
+    height: '100%',
+    justifyContent: 'center',
+    paddingLeft: 50,
+    paddingRight: 50,
+    position: 'absolute',
+    backgroundColor: Colors.white,
+    flexGrow: 1,
+  },
+  offlineText: {
+    textAlign: 'center',
+    fontSize: getFontSize(22),
+    fontWeight: '400',
+    flexWrap: 'wrap',
+    fontFamily:'Poppins-bold',
+    marginBottom: 20,
+  },
+  offlineHint: {
+    fontSize: getFontSize(15),
+    fontWeight: '200',
+    flexWrap: 'wrap',
+    fontFamily:'Poppins-regular',
+  },
+});
